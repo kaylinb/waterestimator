@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>            
+        <div id="external-form-wrapper">
+            <div class="menu-input-container form-dimensions">
+                <label for="calculator-type-menu">Calculator Type</label>
+                <select id="calculator-type-menu" name="calculator-type-menu">
+                    <option value="">Please select a rate calculator.</option>
+                    <option value="Sewer Rates">Sewer Rates</option>
+                    <option value="Residential Water Rates">Residential Water Rates</option>
+                    <option value="Commercial Water Rates">Commercial Water Rates</option>
+                    <option value="Reclaimed Water Rates">Reclaimed Water Rates</option>
+                </select>
+            </div>
+            <form class="form-dimensions" id="bill-calculator-form">
+                <div id="internal-form-wrapper">
+                    <!-- below is shown if sewer rates calculator is chosen -->
+                    <div id="sewer-rates-container" style="display: none;">
+                        <div class="menu-input-container">
+                            <label for="sewer-is-residential-menu">Residential</label>
+                            <select id="sewer-is-residential-menu" name="sewer-is-residential-menu" required>
+                                <option value="" disabled selected>Please select an option.</option>
+                                <option value="true">True (Residential)</option>
+                                <option value="false">False (Commercial)</option>
+                            </select>
+                        </div>
+                        <div class="menu-input-container">
+                            <label for="sewer-customer-class-menu">Customer Class</label>
+                            <select id="sewer-customer-class-menu" name="sewer-customer-class-menu" required>
+                                <option value="" disabled selected>Please select a customer class.</option>
+                                <option value="Residential">Residential</option>
+                                <option value="Mobile Home Parks (Per Space)">Mobile Home Parks (Per Space)</option>
+                                <option value="Motels (Per Unit)">Motels (Per Unit)</option>
+                                <option value="Motels (Per Living Unit)">Motels (Per Living Unit)</option>
+                                <option value="Hotels (Per Unit)">Hotels (Per Unit)</option>
+                                <option value="Hotels (Per Living Unit)">Hotels (Per Living Unit)</option>
+                                <option value="Restaurants">Restaurants</option>
+                                <option value="Supermarkets">Supermarkets</option>
+                                <option value="Mortuaries">Mortuaries</option>
+                                <option value="Bakeries">Bakeries</option>
+                                <option value="Laundries">Laundries</option>
+                            </select>
+                        </div>
+                        <div class="menu-input-container">
+                            <label for="sewer-meter-size-menu">Meter Size (Inches)</label>
+                            <select id="sewer-meter-size-menu" name="sewer-meter-size-menu" required>
+                                <option value="" disabled selected>Please select a meter size.</option>
+                                <option value='[0.625, 5/8"]'>5/8"</option>
+                                <option value='[0.75, 3/4"]'>3/4"</option>
+                                <option value='[1, 1"]'>1"</option>
+                                <option value='[1.5, 1 1/2"]'>1 1/2"</option>
+                                <option value='[2, 2"]'>2"</option>
+                                <option value='[3, 3"]'>3"</option>
+                                <option value='[4, 4"]'>4"</option>
+                                <option value='[6, 6"]'>6"</option>
+                                <option value='[8, 8"]'>8"</option>
+                            </select>
+                        </div>
+                        <div class="menu-input-container">
+                            <label for="sewer-hundred-cubic-feet-usage-menu">Sewer Usage (Hundred Cubic Feet)</label>
+                            <input 
+                                id="sewer-hundred-cubic-feet-usage-menu"
+                                min="0"
+                                name="sewer-hundred-cubic-feet-usage-menu"
+                                required
+                                type="number"
+                                value="0"
+                            >
+                        </div>
+                    </div>
+                    <!-- above is shown if sewer rates calculator is chosen -->
+
+                    <!-- below is shown if residential water rates calculator is chosen -->
+                    <div id="residential-water-rates-container" style="display: none;">
+                        <div class="menu-input-container">
+                            <label for="water-is-indoor-menu">Indoor</label>
+                            <select id="water-is-indoor-menu" name="water-is-indoor-menu" required>
+                                <option value="" disabled selected>Please select an option.</option>
+                                <option value="true">True (Indoor)</option>
+                                <option value="false">False (Outdoor)</option>
+                            </select>
+                        </div>
+                    
+                        <div id="outdoor-menu-input-container" style="display: none;">
+                            <div class="menu-input-container">
+                                <label for="water-irrigated-area-input">Irrigated Area (Square Feet)</label>
+                                <input 
+                                    id="water-irrigated-area-input"
+                                    min="0"
+                                    name="water-irrigated-area-input"
+                                    required
+                                    type="number"
+                                    value="0"
+                                >
+                            </div>
+                        
+                            <div class="menu-input-container">
+                                <label for="water-evapotranspiration-rate-input">Evapotranspiration Rate (Inches)</label>
+                                <input 
+                                    id="water-evapotranspiration-rate-input"
+                                    min="0"
+                                    name="water-evapotranspiration-rate-input"
+                                    required
+                                    type="number"
+                                    value="0"
+                                >
+                                <small><a href="https://cimis.water.ca.gov/WSNReportCriteria.aspx" rel="noopener noreferrer" target="_blank">Find Evapotranspiration Rate (UC Riverside Station 44)</a></small>
+                            </div>
+                        </div>
+                    
+                        <div class="menu-input-container">
+                            <label for="water-hundred-cubic-feet-usage-menu">Water Usage (Hundred Cubic Feet)</label>
+                            <input 
+                                id="water-hundred-cubic-feet-usage-menu"
+                                min="0"
+                                name="water-hundred-cubic-feet-usage-menu"
+                                required
+                                type="number"
+                                value="0"
+                            >
+                        </div>
+                    
+                        <div class="menu-input-container">
+                            <label for="water-billing-cycle-days-input">Billing Cycle Days</label>
+                            <input 
+                                id="water-billing-cycle-days-input"
+                                min="1"
+                                max="31"
+                                name="water-billing-cycle-days-input"
+                                required
+                                type="number"
+                                value="1"
+                            >
+                        </div>
+                    
+                        <div class="menu-input-container">
+                            <label for="water-meter-size-menu">Meter Size (Inches)</label>
+                            <select id="water-meter-size-menu" name="water-meter-size-menu" required>
+                                <option value="" disabled selected>Please select a meter size.</option>
+                                <option value='[0.625, 5/8"]'>5/8"</option>
+                                <option value='[0.75, 3/4"]'>3/4"</option>
+                                <option value='[1, 1"]'>1"</option>
+                                <option value='[1.5, 1 1/2"]'>1 1/2"</option>
+                                <option value='[2, 2"]'>2"</option>
+                                <option value='[3, 3"]'>3"</option>
+                                <option value='[4, 4"]'>4"</option>
+                                <option value='[6, 6"]'>6"</option>
+                                <option value='[8, 8"]'>8"</option>
+                            </select>
+                        </div>
+
+                        <div class="menu-input-container">
+                            <label for="water-is-single-family-menu">Single Family</label>
+                            <select id="water-is-single-family-menu" name="water-is-single-family-menu" required>
+                                <option value="" disabled selected>Please select an option.</option>
+                                <option value="true">True (Single Family)</option>
+                                <option value="false">False (Multi-Family)</option>
+                            </select>
+                        </div>
+                    
+                        <div class="menu-input-container">
+                            <label for="water-private-fire-included-menu">Private Fire Included</label>
+                            <select id="water-private-fire-included-menu" name="water-private-fire-included-menu" required>
+                                <option value="" disabled selected>Please select an option.</option>
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
+                        </div>                    
+                    </div>
+                    <!-- above is shown if residential water rates calculator is chosen -->
+
+                    <!-- below is shown if commercial water rates calculator is chosen -->
+                    <div id="commercial-water-rates-container" style="display: none;">
+                        <div class="menu-input-container">
+                            <label for="commercial-water-hundred-cubic-feet-usage-input">Water Usage (Hundred Cubic Feet)</label>
+                            <input 
+                                id="commercial-water-hundred-cubic-feet-usage-menu"
+                                min="0"
+                                name="commercial-water-hundred-cubic-feet-usage-menu"
+                                required
+                                type="number"
+                                value="0"
+                            >
+                        </div>
+                    
+                        <div class="menu-input-container">
+                            <label for="commercial-water-billing-cycle-days-input-1">Water Billing Cycle Days [3 Years Ago This Month]</label>
+                            <input 
+                                id="commercial-water-billing-cycle-days-input-1"
+                                min="1"
+                                max="31"
+                                name="commercial-water-billing-cycle-days-input-1"
+                                required
+                                type="number"
+                                value="1"
+                            >
+                        </div>
+
+                        <div class="menu-input-container">
+                            <label for="commercial-water-billing-cycle-days-input-2">Water Billing Cycle Days [2 Years Ago This Month]</label>
+                            <input 
+                                id="commercial-water-billing-cycle-days-input-2"
+                                min="1"
+                                max="31"
+                                name="commercial-water-billing-cycle-days-input-2"
+                                required
+                                type="number"
+                                value="1"
+                            >
+                        </div>
+
+                        <div class="menu-input-container">
+                            <label for="commercial-water-billing-cycle-days-input-3">Water Billing Cycle Days [Last Year This Month]</label>
+                            <input 
+                                id="commercial-water-billing-cycle-days-input-3"
+                                min="1"
+                                max="31"
+                                name="commercial-water-billing-cycle-days-input-3"
+                                required
+                                type="number"
+                                value="1"
+                            >
+                        </div>
+                    
+                        <div class="menu-input-container">
+                            <label for="commercial-water-hundred-cubic-feet-past-usage-input-1">Past Water Usage (Hundred Cubic Feet) [3 Years Ago This Month]</label>
+                            <input 
+                                id="commercial-water-hundred-cubic-feet-past-usage-input-1"
+                                min="0"
+                                name="commercial-water-hundred-cubic-feet-past-usage-input-1"
+                                required
+                                type="number"
+                                value="0"
+                            >
+                        </div>
+
+                        <div class="menu-input-container">
+                            <label for="commercial-water-hundred-cubic-feet-past-usage-input-2">Past Water Usage (Hundred Cubic Feet) [2 Years Ago This Month]</label>
+                            <input 
+                                id="commercial-water-hundred-cubic-feet-past-usage-input-2"
+                                min="0"
+                                name="commercial-water-hundred-cubic-feet-past-usage-input-2"
+                                required
+                                type="number"
+                                value="0"
+                            >
+                        </div>
+
+                        <div class="menu-input-container">
+                            <label for="commercial-water-hundred-cubic-feet-past-usage-input-3">Past Water Usage (Hundred Cubic Feet) [Last Year This Month]</label>
+                            <input 
+                                id="commercial-water-hundred-cubic-feet-past-usage-input-3"
+                                min="0"
+                                name="commercial-water-hundred-cubic-feet-past-usage-input-3"
+                                required
+                                type="number"
+                                value="0"
+                            >
+                        </div>
+                    
+                        <div class="menu-input-container">
+                            <label for="commercial-water-meter-size-menu">Meter Size (Inches)</label>
+                            <select id="commercial-water-meter-size-menu" name="commercial-water-meter-size-menu" required>
+                                <option value="" disabled selected>Please select a meter size.</option>
+                                <option value='[0.625, 5/8"]'>5/8"</option>
+                                <option value='[0.75, 3/4"]'>3/4"</option>
+                                <option value='[1, 1"]'>1"</option>
+                                <option value='[1.5, 1 1/2"]'>1 1/2"</option>
+                                <option value='[2, 2"]'>2"</option>
+                                <option value='[3, 3"]'>3"</option>
+                                <option value='[4, 4"]'>4"</option>
+                                <option value='[6, 6"]'>6"</option>
+                                <option value='[8, 8"]'>8"</option>
+                            </select>
+                        </div>
+
+                        <div class="menu-input-container">
+                            <label for="commercial-water-private-fire-included-menu">Private Fire Included</label>
+                            <select id="commercial-water-private-fire-included-menu" name="commercial-water-private-fire-included-menu" required>
+                                <option value="" disabled selected>Please select an option.</option>
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
+                        </div>
+                    </div>                    
+                    <!-- above is shown if commercial water rates calculator is chosen -->
+
+                    <!-- below is shown if reclaimed water rates calculator is chosen -->
+                    <div id="reclaimed-water-rates-container" style="display: none;">
+                        <div class="menu-input-container">
+                            <label for="reclaimed-water-hundred-cubic-feet-usage-menu">Water Usage (Hundred Cubic Feet)</label>
+                            <input 
+                                id="reclaimed-water-hundred-cubic-feet-usage-menu"
+                                min="0"
+                                name="reclaimed-water-hundred-cubic-feet-usage-menu"
+                                required
+                                type="number"
+                                value="0"
+                            >
+                        </div>
+
+                        <div class="menu-input-container">
+                            <label for="reclaimed-water-meter-size-menu">Meter Size (Inches)</label>
+                            <select id="reclaimed-water-meter-size-menu" name="reclaimed-water-meter-size-menu" required>
+                                <option value="" disabled selected>Please select a meter size.</option>
+                                <option value='[0.625, 5/8"]'>5/8"</option>
+                                <option value='[0.75, 3/4"]'>3/4"</option>
+                                <option value='[1, 1"]'>1"</option>
+                                <option value='[1.5, 1 1/2"]'>1 1/2"</option>
+                                <option value='[2, 2"]'>2"</option>
+                                <option value='[3, 3"]'>3"</option>
+                                <option value='[4, 4"]'>4"</option>
+                                <option value='[6, 6"]'>6"</option>
+                                <option value='[8, 8"]'>8"</option>
+                            </select>
+                        </div>
+
+                        <div class="menu-input-container">
+                            <label for="reclaimed-water-irrigated-area-input">Irrigated Area (Square Feet)</label>
+                            <input 
+                                id="reclaimed-water-irrigated-area-input"
+                                min="0"
+                                name="reclaimed-water-irrigated-area-input"
+                                required
+                                type="number"
+                                value="0"
+                            >
+                        </div>
+                    
+                        <div class="menu-input-container">
+                            <label for="reclaimed-water-evapotranspiration-rate-input">Evapotranspiration Rate (Inches)</label>
+                            <input 
+                                id="reclaimed-water-evapotranspiration-rate-input"
+                                min="0"
+                                name="reclaimed-water-evapotranspiration-rate-input"
+                                required
+                                type="number"
+                                value="0"
+                            >
+                            <small><a href="https://cimis.water.ca.gov/WSNReportCriteria.aspx" rel="noopener noreferrer" target="_blank">Find Evapotranspiration Rate (UC Riverside Station 44)</a></small>
+                        </div>
+                    </div>
+                    <!-- above is shown if reclaimed water rates calculator is chosen -->
+
+                    <!-- below is shown if electric rates calculator is chosen -->
+                    <!-- <div id="electric-rates-container" style="display: none;">
+                        <div class="menu-input-container">
+                            <label for=""></label>
+                            <select id="" name="" required>
+                                <option value="" disabled selected></option>
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <div class="menu-input-container">
+                            <label for=""></label>
+                            <input 
+                                id=""
+                                min="0"
+                                name=""
+                                required
+                                type="number"
+                                value="0"
+                            >
+                        </div>
+                    </div> -->
+                    <!-- above is shown if electric rates calculator is chosen -->
+
+                    <div id="form-footer">
+                        <div>
+                            <button type="reset">Reset</button>
+                        </div>
+                        <div>
+                            <button id="form-submit-button" type="button">Submit</button>
+                        </div>
+                    </div>
+                    <div id="calculation-result-div">
+                        <table class="form-dimensions">
+                            <caption>Calculated Rates</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">2024</th>
+                                    <th scope="col">2025</th>
+                                    <th scope="col">2026</th>
+                                    <th scope="col">2027</th>
+                                    <th scope="col">2028</th>
+                                    <th scope="col">2029</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="table-data-row">
+                                    <!-- content dynamically populated -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <script src="rates.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
