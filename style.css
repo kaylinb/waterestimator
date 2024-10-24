@@ -8,7 +8,7 @@ body {
 }
 
 #external-form-wrapper {
-    max-width: 600px; /* Reduced width */
+    max-width: 75%;
     margin: 40px auto;
     background-color: #fff;
     padding: 20px;
@@ -16,8 +16,15 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.form-dimensions {
-    width: 100%;
+.column-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.row-container {
+    display: flex;
+    gap: 10px;
 }
 
 label {
@@ -60,24 +67,24 @@ button:hover {
     background-color: #14534b;
 }
 
-#form-footer {
+.form-footer {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
 }
 
-#form-footer div {
-    width: 48%;
+.form-footer div {
+    width: 50%;
 }
 
 /* Table Styling */
 table {
+    display: block;
     width: 100%;
+    overflow-x: auto;
     border-collapse: collapse;
     margin-top: 20px;
     border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 caption {
@@ -110,97 +117,3 @@ tbody tr:nth-child(odd) td {
 thead th, tbody td {
     border-bottom: 2px solid #ccc;
 }
-
-/* Responsive Adjustments */
-@media (max-width: 600px) {
-    #form-footer {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    #form-footer div {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    button {
-        width: 100%;
-    }
-}
-
-/* .form-dimensions {
-    width: 500px;
-}
-
-.menu-input-container {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-}
-
-#external-form-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Calibri, "Helvetica Neue", Arial, sans-serif;
-
-}
-
-#bill-calculator-form {
-    border: 1px solid black;
-}
-
-#internal-form-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 20px;
-    height: 500px;
-    overflow: auto;
-}
-
-#internal-form-wrapper label {
-    margin-bottom: 5px;
-    text-align: center;
-}
-
-#internal-form-wrapper input, select {
-    color: black;
-    padding: 8px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    border-width: 1px;
-    box-sizing: border-box;
-    box-shadow: none;
-    width: 100%;
-}
-
-#form-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-#form-footer button {
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-#form-footer button:hover {
-    background-color: #45a049;
-}
-
-#calculation-result-div {
-    align-self: center;
-    text-align: center;
-    font-size: 18px;
-} */
